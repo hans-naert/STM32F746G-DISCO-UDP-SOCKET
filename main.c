@@ -23,6 +23,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdio.h>
+#include "Driver_USART.h"        // CMSIS Driver:USART
 
 #ifdef RTE_CMSIS_RTOS2_RTX5
 /**
@@ -74,6 +76,30 @@ static void Error_Handler(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
 
+
+/* USART Driver */
+extern ARM_DRIVER_USART Driver_USART1;
+
+void Initialize_USART(void)
+{
+ static ARM_DRIVER_USART * USARTdrv = &Driver_USART1;
+ /*Initialize the USART driver */
+  USARTdrv->Initialize(0);
+  /*Power up the USART peripheral */
+  USARTdrv->PowerControl(ARM_POWER_FULL);
+  /*Configure the USART to 115200 Bits/sec */
+  USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS |
+           ARM_USART_DATA_BITS_8 |
+           ARM_USART_PARITY_NONE |
+           ARM_USART_STOP_BITS_1 |
+           ARM_USART_FLOW_CONTROL_NONE, 115200);
+  
+  /* Enable Receiver and Transmitter lines */
+  USARTdrv->Control (ARM_USART_CONTROL_TX, 1);
+  //USARTdrv->Control (ARM_USART_CONTROL_RX, 1);
+}
+
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -110,6 +136,10 @@ int main(void)
 
   /* Add your application code here
      */
+		 
+	Initialize_USART();
+
+	printf("Hello World\n");
 
 #ifdef RTE_CMSIS_RTOS2
   /* Initialize CMSIS-RTOS2 */
