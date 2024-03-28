@@ -38,6 +38,8 @@
 static osThreadId_t tid_thrLED;         // Thread id of thread: LED
 static osThreadId_t tid_thrBUT;         // Thread id of thread: BUT
 
+extern int main_udp (void);
+
 /*------------------------------------------------------------------------------
   thrLED: blink LED
  *----------------------------------------------------------------------------*/
@@ -94,5 +96,6 @@ void app_main (void *argument) {
   tid_thrBUT = osThreadNew (thrBUT, NULL, NULL);  // Create BUT thread
   if (tid_thrBUT == NULL) { /* add error handling */ }
 
+	main_udp();
   osThreadExit();
 }

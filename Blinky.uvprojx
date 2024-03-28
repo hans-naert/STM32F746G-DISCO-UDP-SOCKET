@@ -399,6 +399,11 @@
               <FileType>1</FileType>
               <FilePath>.\stdout_user.c</FilePath>
             </File>
+            <File>
+              <FileName>UDP_Socket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UDP_Socket.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -826,6 +831,11 @@
               <FileName>stdout_user.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stdout_user.c</FilePath>
+            </File>
+            <File>
+              <FileName>UDP_Socket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UDP_Socket.c</FilePath>
             </File>
           </Files>
         </Group>
